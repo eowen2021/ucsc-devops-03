@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080
+      - 5000:5000
+  sonar:
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: 'true'
+  rt:
+    image: releases-docker.jfrog.io/jfrog/artifactory-oss:latest
+    ports:
+      - 8081:8081 
+      - 8082:8082
+    volumes:
+      - /Users/devops/artifactory/jfrog-artifactory-oss-6.23.3/artifactory/var/:/var/opt/jfrog/artifactory
+
